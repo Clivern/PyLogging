@@ -1,0 +1,4 @@
+include LICENSE AUTHORS README.txt
+recursive-include examples *
+recursive-exclude examples *.pyc
+recursive-exclude examples *.pyo

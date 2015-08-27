@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: pylogging
+Version: 1.0.0
+Author: Clivern
+Author-email: support at clivern com
+Maintainer: Clivern
+Maintainer-email: support at clivern com
+Home-page: https://github.com/Clivern/pylogging
+Download-url: https://github.com/Clivern/pylogging/archive/master.zip
+Summary: Python Logging Library
+Keywords: logging,debugging
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Utilities
