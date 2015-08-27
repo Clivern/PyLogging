@@ -1,0 +1,4 @@
+
+
+class Mailer():
+	pass
