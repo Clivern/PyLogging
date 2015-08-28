@@ -1,10 +1,9 @@
 from __future__ import print_function
 from time import gmtime, strftime
-from . import storage
-from . import mailer
 import os
 
-class PyLogging(dict, storage):
+
+class PyLogging(dict):
     """ A custom logger class """
     
     LOG_FILE_FORMAT = 'YYYY-MM-DD'
@@ -16,78 +15,51 @@ class PyLogging(dict, storage):
     ALERT_STATUS = False
     ALERT_EMAIL = 'hello@example.com'
     ALERT_TYPES = ['critical', 'error']
+    FILTERS = []
 
     def __init__(self, **kargs):
-        self.logs_path = logs_path
-        
-    def _updateConfigs(self, **kargs):
+        self._config(**kargs)
 
-    def __getattr__(self, name, default=False):
-        """ Get attributes """
-        if name in self.__dict__:
-            return self.__dict__[name]
-        elif name in self:
-            return self.get(name)
+    def _config(self, **kargs):
+        for key, value in kargs.items():
+            setattr(self, key, value)
+
+    def getConfig(self, key):
+        if hasattr(self, key):
+            return getattr(self, key)
         else:
-            # Check for denormalized name
-            name = self._denormalize(name)
-            if name in self:
-                return self.get(name)
-            else:
-                return default
+            return False
 
+    def setConfig(self, key, value):
+        setattr(self, key, value)
+        return True
 
-    def __setattr__(self, name, value):
-        """ Set attributes """
-        if name in self.__dict__:
-            self.__dict__[name] = value
-        elif name in self:
-            self[name] = value
-        else:
-            # Check for denormalized name
-            name2 = self._normalize(name)
-            if name2 in self:
-                self[name2] = value
-            else:
-                # New attribute
-                self[name] = value
+    def addFilter(self, filter):
+        self.FILTERS.append(filter)
+        return "FILTER#{}".format(len(self.FILTERS) - 1)
 
-
-    def _normalize(self, value):
-        """ Normalize a string """
-
-        if value.find('-') != -1:
-            value = value.replace('-', '_')
-
-        return value
-
-
-    def _denormalize(self, value):
-        """ De-normalize a string """
-
-        if value.find('_') != -1:
-            value = value.replace('_', '-')
-
-        return value
-
-
-    def addFilter(self, filter, types = ['info', 'warning', 'error', 'critical', 'log']):
-        pass
+    def _execFilters(self, type, msg):
+        for filter in self.FILTERS:
+            msg = filter(type, msg)
+        return msg
 
     def removeFilter(self, filter):
-        pass    
+        filter = filter.split('#')
+        del self.FILTERS[filter[1]]
+        return True
 
     def info(self, msg):
-        pass
+        msg = self._execFilters('info', msg)
+        return msg
 
     def warning(self, msg):
-        pass
+        msg = self._execFilters('warning', msg)
 
     def error(self, msg):
-        pass
+        msg = self._execFilters('error', msg)
 
     def critical(self, msg):
-        pass
+        msg = self._execFilters('critical', msg)
 
     def log(self, msg):
-        pass
+        msg = self._execFilters('log', msg)
