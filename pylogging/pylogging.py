@@ -1,8 +1,8 @@
 from __future__ import print_function
-import os
-
+from time import gmtime, strftime
 from . import storage
 from . import mailer
+import os
 
 class PyLogging(dict, storage):
     """ A custom logger class """
