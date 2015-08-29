@@ -9,9 +9,6 @@ from pylogging import __VERSION__
 import os
 
 # Utility function to read the README file.
-# Used for the long_description.  It's nice, because now 1) we have a top level
-# README file and 2) it's easier to type in the README file than to put a raw
-# string in below ...
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
@@ -27,20 +24,18 @@ setup(
     packages = ['pylogging'],
     long_description = read('README.md'),
     classifiers = [
-        # How mature is this project? Common values are
+        # Common values are
         #   3 - Alpha
         #   4 - Beta
         #   5 - Production/Stable
         'Development Status :: 3 - Alpha',
 
-        # Indicate who your project is intended for
+        # Package is intended for
         "Topic :: Utilities",
 
-        # Pick your license as you wish (should match "license" above)
-         'License :: OSI Approved :: MIT License',
+        'License :: OSI Approved :: MIT License',
 
-        # Specify the Python versions you support here. In particular, ensure
-        # that you indicate whether you support Python 2, Python 3 or both.
+        # Support Python-2.x and Python-3.x
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
