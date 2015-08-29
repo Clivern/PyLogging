@@ -1,8 +1,14 @@
+"""
+Python Logging Library
+
+@author: Clivern U{support@clivern.com}
+"""
 import smtplib
 from email.mime.text import MIMEText
 
+
 class Mailer():
-    """ Used By Logger to Send Emails """
+    """ Send Log Messages To Email """
 
     def __init__(self, host="localhost"):
         """ Define Host """
@@ -11,7 +17,7 @@ class Mailer():
         self._pwd = None
 
     def login(self, usr, pwd):
-        """ Use login() to log in with a username and password. """
+        """ Use login() to Log in with a username and password. """
         self._usr = usr
         self._pwd = pwd
 
@@ -22,10 +28,15 @@ class Mailer():
         msg['From'] = me
         msg['To'] = to
         server = smtplib.SMTP(self.host)
+        
+        # Check if user and password defined
         if self._usr and self._pwd:
             server.login(self._usr, self._pwd)
         try:
+            # Send email
             server.sendmail(me, [x.strip() for x in to.split(",")], msg.as_string())
         except:
+            # Error sending email
             raise Exception("Error Sending Message.")
+        # Quit!
         server.quit()

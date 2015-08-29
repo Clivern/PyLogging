@@ -5,4 +5,5 @@ Python Logging Library
 """
 from .pylogging import PyLogging
 
+# Package Current Version
 __VERSION__ = "1.0.0"

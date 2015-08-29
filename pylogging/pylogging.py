@@ -1,3 +1,8 @@
+"""
+Python Logging Library
+
+@author: Clivern U{support@clivern.com}
+"""
 from __future__ import print_function
 from time import gmtime, strftime
 import platform
@@ -6,50 +11,90 @@ import datetime
 from .mailer import Mailer
 from .storage import Storage
 
+
 class PyLogging(dict):
     """ A Custom Logger Class """
     
+    # Log File Name Format    
     LOG_FILE_FORMAT = '%Y-%m-%d'
+
+    # Log File Path
     LOG_FILTE_PATH = ''
-    LOG_MESSAGE_FORMAT = '{TYPE}: <{DATE}>  {MESSAGE}'
-    DATES_FORMAT = '%Y-%m-%d'
-    DATETIME_FORMAT = '%Y-%m-%d %H:%M'
     
+    # Message Format. A list of available vars: 
+    #   TYPE:
+    #   DATE:
+    #   DATETIME:
+    #   MESSAGE:
+    LOG_MESSAGE_FORMAT = '{TYPE}: <{DATE}>  {MESSAGE}'
+    
+    # Dates Format
+    DATES_FORMAT = '%Y-%m-%d'
+    
+    # Datetime Format
+    DATETIME_FORMAT = '%Y-%m-%d %H:%M'
+
+    # Platform Data Vars
+    #  If set to true, It will Add the following:
+    #   PL_TYPE:
+    #   PL_NAME:
+    #   PL_PROCESSOR:
+    #   PL_PY_BUILD_DATE:
+    #   PL_PY_COMPILER:
+    #   PL_PY_RELEASE:
+    #   PL_OS:
+    #   PL_TIMEZONE:
     PLATFORM_DATA = False
 
-    """" Mailer Custom Configs """
-    ALERT_SUBJECT = "My APP Alert"
+    # Whether to Send Alert Email
     ALERT_STATUS = False
-    ALERT_EMAIL = 'hello@example.com'
-    ALERT_TYPES = ['critical', 'error']
-    MAILER_HOST = 'localhost'
-    MAILER_USER = None
-    MAILER_PWD = None
-    MAILER_FROM = 'no_reply@example.com'
-    MAILER_TO = 'admin@example.com'
+    
+    # Alert Email Default Subject
+    ALERT_SUBJECT = "My APP Alert"
 
-    """ Custom Filters and Actions """
+    # Alert Email
+    ALERT_EMAIL = 'hello@example.com'
+    
+    # Message Types to Send to Email
+    ALERT_TYPES = ['critical', 'error']
+
+    # Mailer Class Host
+    MAILER_HOST = 'localhost'
+    
+    # Mailer Class User
+    MAILER_USER = None
+
+    # Mailer Class PWD
+    MAILER_PWD = None
+
+    # From Email Value
+    MAILER_FROM = 'no_reply@example.com'
+
+    # Custom Message Filters
     FILTERS = []
+
+    # Custom Message Actions
     ACTIONS = []
 
     def __init__(self, **kargs):
+        """ Init PyLogger Class and Mailer Class """
         self._config(**kargs)
         self._configMailer()
 
     def _config(self, **kargs):
-        """ Reconfigure Library """
+        """ ReConfigure Package """
         for key, value in kargs.items():
             setattr(self, key, value)
 
     def getConfig(self, key):
-        """ Get Config Value """
+        """ Get a Config Value """
         if hasattr(self, key):
             return getattr(self, key)
         else:
             return False
 
     def setConfig(self, key, value):
-        """ Set Config Value """
+        """ Set a Config Value """
         setattr(self, key, value)
         return True
 
@@ -62,17 +107,6 @@ class PyLogging(dict):
         """ Register Custom Action """
         self.ACTIONS.append(action)
         return "ACTION#{}".format(len(self.ACTIONS) - 1)
-
-    def _execFilters(self, type, msg):
-        """ Execute Registered Filters """
-        for filter in self.FILTERS:
-            msg = filter(type, msg)
-        return msg
-
-    def _execActions(self, type, msg):
-        """ Execute Registered Actions """
-        for action in self.ACTIONS:
-            action(type, msg)
 
     def removeFilter(self, filter):
         """ Remove Registered Filter """
@@ -125,11 +159,14 @@ class PyLogging(dict):
         """ Process Debug Messages """
         now = datetime.datetime.now()
 
+        # Check If Path not provided
         if self.LOG_FILTE_PATH == '':
             self.LOG_FILTE_PATH = os.path.dirname(os.path.abspath(__file__)) + '/'
 
+        # Build absolute Path
         log_file = self.LOG_FILTE_PATH + now.strftime(self.LOG_FILE_FORMAT) + '.log'
         
+        # Add General Vars
         msg = self.LOG_MESSAGE_FORMAT.format(
             TYPE=type.upper(),
             DATE=now.strftime(self.DATES_FORMAT),
@@ -139,6 +176,7 @@ class PyLogging(dict):
 
         # Check if to add platform data
         if self.PLATFORM_DATA:
+            # Add Platform Specific Vars
             msg = msg.format(
                 PL_TYPE=platform.machine(),
                 PL_NAME=platform.node(),
@@ -150,7 +188,9 @@ class PyLogging(dict):
                 PL_TIMEZONE=strftime("%z", gmtime())
             )
 
+        # Create Storage Instance
         self._STORAGE = Storage(log_file)
+        # Write Storage
         return self._STORAGE.write(msg)
 
     def _configMailer(self):
@@ -161,4 +201,15 @@ class PyLogging(dict):
     def _sendMsg(self, type, msg):
         """ Send Alert Message To Emails """
         if self.ALERT_STATUS and type in self.ALERT_TYPES:
-            self._MAILER.send(self, MAILER_FROM, MAILER_TO, self.ALERT_SUBJECT, msg)
+            self._MAILER.send(self, self.MAILER_FROM, self.ALERT_EMAIL, self.ALERT_SUBJECT, msg)
+
+    def _execFilters(self, type, msg):
+        """ Execute Registered Filters """
+        for filter in self.FILTERS:
+            msg = filter(type, msg)
+        return msg
+
+    def _execActions(self, type, msg):
+        """ Execute Registered Actions """
+        for action in self.ACTIONS:
+            action(type, msg)
