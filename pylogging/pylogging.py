@@ -1,17 +1,19 @@
 from __future__ import print_function
 from time import gmtime, strftime
-import os
 import platform
+import os
 import datetime
-
+from .mailer import Mailer
+from .storage import Storage
 
 class PyLogging(dict):
     """ A Custom Logger Class """
     
-    LOG_FILE_FORMAT = 'YYYY-MM-DD'
+    LOG_FILE_FORMAT = '%Y-%m-%d'
+    LOG_FILTE_PATH = ''
     LOG_MESSAGE_FORMAT = '{TYPE}: <{DATE}>  {MESSAGE}'
-    DATES_FORMAT = 'YYYY-MM-DD'
-    DATETIME_FORMAT = 'YYYY-MM-DD HH:MM:SS'
+    DATES_FORMAT = '%Y-%m-%d'
+    DATETIME_FORMAT = '%Y-%m-%d %H:%M'
     
     PLATFORM_DATA = False
 
@@ -119,10 +121,14 @@ class PyLogging(dict):
         self._processMsg('log', msg)
         self._sendMsg('log', msg)
 
-    def _processMsg(type, msg):
+    def _processMsg(self, type, msg):
         """ Process Debug Messages """
         now = datetime.datetime.now()
-        log_file = now.strftime(self.LOG_FILE_FORMAT)
+
+        if self.LOG_FILTE_PATH == '':
+            self.LOG_FILTE_PATH = os.path.dirname(os.path.abspath(__file__)) + '/'
+
+        log_file = self.LOG_FILTE_PATH + now.strftime(self.LOG_FILE_FORMAT) + '.log'
         
         msg = self.LOG_MESSAGE_FORMAT.format(
             TYPE=type.upper(),
@@ -147,12 +153,12 @@ class PyLogging(dict):
         self._STORAGE = Storage(log_file)
         return self._STORAGE.write(msg)
 
-    def _configMailer():
+    def _configMailer(self):
         """ Config Mailer Class """
         self._MAILER = Mailer(self.MAILER_HOST)
         self._MAILER.login(self.MAILER_USER, self.MAILER_PWD)
 
     def _sendMsg(self, type, msg):
         """ Send Alert Message To Emails """
-        if ALERT_STATUS and type in self.ALERT_TYPES:
+        if self.ALERT_STATUS and type in self.ALERT_TYPES:
             self._MAILER.send(self, MAILER_FROM, MAILER_TO, self.ALERT_SUBJECT, msg)

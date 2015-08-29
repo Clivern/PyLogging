@@ -1,6 +1,6 @@
 from setuptools import setup
-
 from pylogging import __VERSION__
+import os
 
 # Utility function to read the README file.
 # Used for the long_description.  It's nice, because now 1) we have a top level
