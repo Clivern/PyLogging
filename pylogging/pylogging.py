@@ -2,15 +2,16 @@ from __future__ import print_function
 from time import gmtime, strftime
 import os
 import platform
+import datetime
+
 
 class PyLogging(dict):
     """ A Custom Logger Class """
     
     LOG_FILE_FORMAT = 'YYYY-MM-DD'
-    LOG_MESSAGE_FORMAT = '{TYPE}: <{DATE}> {MESSAGE}'
+    LOG_MESSAGE_FORMAT = '{TYPE}: <{DATE}>  {MESSAGE}'
     DATES_FORMAT = 'YYYY-MM-DD'
     DATETIME_FORMAT = 'YYYY-MM-DD HH:MM:SS'
-    DEFAULT_TIMEZONE = 'America/New York'
     
     PLATFORM_DATA = False
 
@@ -120,11 +121,13 @@ class PyLogging(dict):
 
     def _processMsg(type, msg):
         """ Process Debug Messages """
-        log_file = "2012-10-2"
+        now = datetime.datetime.now()
+        log_file = now.strftime(self.LOG_FILE_FORMAT)
+        
         msg = self.LOG_MESSAGE_FORMAT.format(
             TYPE=type.upper(),
-            DATE="",
-            DATETIME="",
+            DATE=now.strftime(self.DATES_FORMAT),
+            DATETIME=now.strftime(self.DATETIME_FORMAT),
             MESSAGE=msg,
         )
 
