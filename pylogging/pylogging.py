@@ -1,6 +1,7 @@
 from __future__ import print_function
 from time import gmtime, strftime
 import os
+import platform
 
 class PyLogging(dict):
     """ A Custom Logger Class """
@@ -11,6 +12,8 @@ class PyLogging(dict):
     DATETIME_FORMAT = 'YYYY-MM-DD HH:MM:SS'
     DEFAULT_TIMEZONE = 'America/New York'
     
+    PLATFORM_DATA = False
+
     """" Mailer Custom Configs """
     ALERT_SUBJECT = "My APP Alert"
     ALERT_STATUS = False
@@ -118,6 +121,26 @@ class PyLogging(dict):
     def _processMsg(type, msg):
         """ Process Debug Messages """
         log_file = "2012-10-2"
+        msg = self.LOG_MESSAGE_FORMAT.format(
+            TYPE=type.upper(),
+            DATE="",
+            DATETIME="",
+            MESSAGE=msg,
+        )
+
+        # Check if to add platform data
+        if self.PLATFORM_DATA:
+            msg = msg.format(
+                PL_TYPE=platform.machine(),
+                PL_NAME=platform.node(),
+                PL_PROCESSOR=platform.processor(),
+                PL_PY_BUILD_DATE=platform.python_build()[1],
+                PL_PY_COMPILER=platform.python_compiler(),
+                PL_PY_RELEASE=platform.release(),
+                PL_OS=platform.system(),
+                PL_TIMEZONE=strftime("%z", gmtime())
+            )
+
         self._STORAGE = Storage(log_file)
         return self._STORAGE.write(msg)
 
