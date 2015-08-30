@@ -43,7 +43,6 @@ class TestPyLoggingMethods(unittest.TestCase):
 		self._logger.critical("Line4.")
 		self._logger.log("Line5.")
 		
-		
 		with open(log_path, 'r') as LogFile:
 			data = LogFile.readlines()
 			data = [item for item in data if item != '\n']

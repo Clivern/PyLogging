@@ -111,13 +111,13 @@ class PyLogging(dict):
     def removeFilter(self, filter):
         """ Remove Registered Filter """
         filter = filter.split('#')
-        del self.FILTERS[filter[1]]
+        del self.FILTERS[int(filter[1])]
         return True
 
     def removeAction(self, action):
         """ Remove Registered Action """
         action = action.split('#')
-        del self.ACTIONS[action[1]]
+        del self.ACTIONS[int(action[1])]
         return True
 
     def info(self, msg):
