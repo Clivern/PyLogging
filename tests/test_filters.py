@@ -16,7 +16,7 @@ class TestPyLoggingMethods(unittest.TestCase):
 		if os.path.isfile(log_path):
 			os.remove(log_path)
 
-		self._logger = pylogging.PyLogging(LOG_FILTE_PATH = os.path.dirname(os.path.abspath(__file__)) + '/')
+		self._logger = pylogging.PyLogging(LOG_FILE_PATH = os.path.dirname(os.path.abspath(__file__)) + '/')
 		filterAdded = self._logger.addFilter(self._filterAdded)
 		filterRemoved = self._logger.addFilter(self._filterRemoved)
 		self._logger.removeFilter(filterRemoved)

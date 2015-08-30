@@ -9,9 +9,9 @@ class TestPyLoggingMethods(unittest.TestCase):
 
 	def test_configs(self):
 		""" Test Configurations Getters and Setters """
-		self._logger = pylogging.PyLogging( LOG_FILE_FORMAT = 1, LOG_FILTE_PATH = 2, LOG_MESSAGE_FORMAT = 3, DATES_FORMAT = 4, DATETIME_FORMAT = 5, PLATFORM_DATA = 6, ALERT_STATUS = 7, ALERT_SUBJECT = 8, ALERT_EMAIL = 9, ALERT_TYPES = 10, MAILER_HOST = 11, MAILER_USER = 12, MAILER_PWD = 13, MAILER_FROM = 14)
+		self._logger = pylogging.PyLogging( LOG_FILE_FORMAT = 1, LOG_FILE_PATH = 2, LOG_MESSAGE_FORMAT = 3, DATES_FORMAT = 4, DATETIME_FORMAT = 5, PLATFORM_DATA = 6, ALERT_STATUS = 7, ALERT_SUBJECT = 8, ALERT_EMAIL = 9, ALERT_TYPES = 10, MAILER_HOST = 11, MAILER_USER = 12, MAILER_PWD = 13, MAILER_FROM = 14)
 		self.assertEqual(self._logger.getConfig('LOG_FILE_FORMAT'), 1)
-		self.assertEqual(self._logger.getConfig('LOG_FILTE_PATH'), 2)
+		self.assertEqual(self._logger.getConfig('LOG_FILE_PATH'), 2)
 		self.assertEqual(self._logger.getConfig('LOG_MESSAGE_FORMAT'), 3)
 		self.assertEqual(self._logger.getConfig('DATES_FORMAT'), 4)
 		self.assertEqual(self._logger.getConfig('DATETIME_FORMAT'), 5)
@@ -36,7 +36,7 @@ class TestPyLoggingMethods(unittest.TestCase):
 		if os.path.isfile(log_path):
 			os.remove(log_path)
 
-		self._logger = pylogging.PyLogging(LOG_FILTE_PATH = os.path.dirname(os.path.abspath(__file__)) + '/')
+		self._logger = pylogging.PyLogging(LOG_FILE_PATH = os.path.dirname(os.path.abspath(__file__)) + '/')
 		self._logger.info("Line1.")
 		self._logger.warning("Line2.")
 		self._logger.error("Line3.")

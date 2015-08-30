@@ -19,7 +19,7 @@ class PyLogging(dict):
     LOG_FILE_FORMAT = '%Y-%m-%d'
 
     # Log File Path
-    LOG_FILTE_PATH = ''
+    LOG_FILE_PATH = ''
     
     # Message Format. A list of available vars: 
     #   TYPE:
@@ -160,11 +160,11 @@ class PyLogging(dict):
         now = datetime.datetime.now()
 
         # Check If Path not provided
-        if self.LOG_FILTE_PATH == '':
-            self.LOG_FILTE_PATH = os.path.dirname(os.path.abspath(__file__)) + '/'
+        if self.LOG_FILE_PATH == '':
+            self.LOG_FILE_PATH = os.path.dirname(os.path.abspath(__file__)) + '/'
 
         # Build absolute Path
-        log_file = self.LOG_FILTE_PATH + now.strftime(self.LOG_FILE_FORMAT) + '.log'
+        log_file = self.LOG_FILE_PATH + now.strftime(self.LOG_FILE_FORMAT) + '.log'
         
         # Add General Vars
         msg = self.LOG_MESSAGE_FORMAT.format(
