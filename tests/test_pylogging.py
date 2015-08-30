@@ -45,13 +45,13 @@ class TestPyLoggingMethods(unittest.TestCase):
 		
 		with open(log_path, 'r') as LogFile:
 			data = LogFile.readlines()
-			data = [item for item in data if item != '\n']
+			data = [item.rstrip() for item in data if item != '\n']
 
-		self.assertEqual(data[0], 'INFO: <'+ now.strftime('%Y-%m-%d') +'>  Line1.\n')
-		self.assertEqual(data[1], 'WARNING: <'+ now.strftime('%Y-%m-%d') +'>  Line2.\n')
-		self.assertEqual(data[2], 'ERROR: <'+ now.strftime('%Y-%m-%d') +'>  Line3.\n')
-		self.assertEqual(data[3], 'CRITICAL: <'+ now.strftime('%Y-%m-%d') +'>  Line4.\n')
-		self.assertEqual(data[4], 'LOG: <'+ now.strftime('%Y-%m-%d') +'>  Line5.\n')
+		self.assertEqual(data[0], 'INFO: <'+ now.strftime('%Y-%m-%d') +'>  Line1.'.rstrip())
+		self.assertEqual(data[1], 'WARNING: <'+ now.strftime('%Y-%m-%d') +'>  Line2.'.rstrip())
+		self.assertEqual(data[2], 'ERROR: <'+ now.strftime('%Y-%m-%d') +'>  Line3.'.rstrip())
+		self.assertEqual(data[3], 'CRITICAL: <'+ now.strftime('%Y-%m-%d') +'>  Line4.'.rstrip())
+		self.assertEqual(data[4], 'LOG: <'+ now.strftime('%Y-%m-%d') +'>  Line5.'.rstrip())
 
 		if os.path.isfile(log_path):
 			os.remove(log_path)
