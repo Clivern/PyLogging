@@ -5,11 +5,8 @@ python:
   - "3.2"
   - "3.3"
   - "3.4"
-install: pip install .
+install: python setup.py install
 script:
 	- python tests/test_pylogging.py
 	- python tests/test_filters.py
 	- python tests/test_actions.py
-branches:
-  only:
-    - master
