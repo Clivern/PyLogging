@@ -45,10 +45,10 @@ class TestPyLoggingMethods(unittest.TestCase):
 			os.remove(log_path)
 
 	def _filterAdded(self, type, msg):
-		return msg + type + " "
+		return msg + type
 
 	def _filterRemoved(self, type, msg):
-		return msg + type + " "
+		return msg + type
 
 	def _actionAdded(self, type, msg):
 		self._count += 1
