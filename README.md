@@ -9,7 +9,15 @@ PyLogging is a light-weight python logging library. It provides ability to write
 
 Installation
 ------------
-
+To install PyLogging run this command:
+```
+pip install pylogging
+```
+or [download](https://github.com/Clivern/PyLogging/archive/master.zip) Package then run this command:
+```
+pip install PyLogging-master.zip
+```
+<!--
 Usage
 -----
 
@@ -17,15 +25,22 @@ Usage
 Customizing
 ===========
 
-Basic Customization
--------------------
+Basic
+-----
 
-Full Customization
-------------------
+Full
+----
 
-
+-->
 Misc
 ====
+
+Changelog
+---------
+Version 1.0.0:
+```
+initial release
+```
 
 Acknowledgements
 ----------------
