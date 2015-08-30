@@ -47,11 +47,11 @@ class TestPyLoggingMethods(unittest.TestCase):
 			data = LogFile.readlines()
 			data = [item for item in data if item != '\n']
 
-		self.assertEqual(data[0], 'INFO: <2015-08-30>  Line1.\n')
-		self.assertEqual(data[1], 'WARNING: <2015-08-30>  Line2.\n')
-		self.assertEqual(data[2], 'ERROR: <2015-08-30>  Line3.\n')
-		self.assertEqual(data[3], 'CRITICAL: <2015-08-30>  Line4.\n')
-		self.assertEqual(data[4], 'LOG: <2015-08-30>  Line5.\n')
+		self.assertEqual(data[0], 'INFO: <'+ now.strftime('%Y-%m-%d') +'>  Line1.\n')
+		self.assertEqual(data[1], 'WARNING: <'+ now.strftime('%Y-%m-%d') +'>  Line2.\n')
+		self.assertEqual(data[2], 'ERROR: <'+ now.strftime('%Y-%m-%d') +'>  Line3.\n')
+		self.assertEqual(data[3], 'CRITICAL: <'+ now.strftime('%Y-%m-%d') +'>  Line4.\n')
+		self.assertEqual(data[4], 'LOG: <'+ now.strftime('%Y-%m-%d') +'>  Line5.\n')
 
 		if os.path.isfile(log_path):
 			os.remove(log_path)
