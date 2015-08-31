@@ -41,7 +41,7 @@ class PyLogging(dict):
     #   PL_PROCESSOR: The (real) processor name, e.g. amdk6.
     #   PL_PY_BUILD_DATE: The Python build number.
     #   PL_PY_COMPILER: A string identifying the compiler used for compiling Python.
-    #   PL_PY_RELEASE: The system’s release, e.g. 2.2.0.
+    #   PL_PY_RELEASE: The system release, e.g. 2.2.0.
     #   PL_OS: The system/OS name, e.g. Linux, Windows
     #   PL_TIMEZONE: The system timezone.
     PLATFORM_DATA = False
