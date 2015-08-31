@@ -3,7 +3,7 @@ PyLogging
 
 PyLogging is a light-weight python logging library. It provides ability to write logs in your own customized format. It is also provides support for custom log filters, custom log actions and email notifications.
 
-*Current version: [v1.0.0]*
+*Current version: [v1.0.1]*
 
 [![Build Status](https://travis-ci.org/Clivern/PyLogging.svg?branch=master)](https://travis-ci.org/Clivern/PyLogging)
 
@@ -13,9 +13,9 @@ To install PyLogging run this command:
 ```
 pip install pylogging
 ```
-or [download](https://github.com/Clivern/pylogging/archive/1.0.0.zip) Package then run this command:
+or [download](https://github.com/Clivern/pylogging/archive/1.0.1.zip) Package then run this command:
 ```
-pip install PyLogging-1.0.0.zip
+pip install PyLogging-1.0.1.zip
 ```
 
 Usage
@@ -247,6 +247,10 @@ Misc
 
 Changelog
 ---------
+Version 1.0.1:
+```
+Mailer class fixed.
+```
 Version 1.0.0:
 ```
 initial release
