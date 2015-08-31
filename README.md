@@ -173,8 +173,49 @@ logger.critical("Critical Message.")
 Customizing
 ===========
 
-Full
-----
+Log File
+--------
+Since log file name passes through `strftime(format)`, You can change file name into any valid time format string. For more info about [format strings](https://docs.python.org/2/library/time.html#time.strftime).
+```
+logger.setConfig('LOG_FILE_FORMAT', '%y-%m-%d')
+```
+
+Log Message
+-----------
+By default you can use combination of available vars in log message format:
+
+ * `{TYPE}`: Log message type.
+ * `{DATE}`: Log time date.
+ * `{DATETIME}`: Log time datetime.
+ * `{MESSAGE}`: Log message content.
+
+The default format is `{TYPE}: <{DATETIME}>  {MESSAGE}`, You can change like the following:
+```
+logger.setConfig('LOG_MESSAGE_FORMAT', '{DATE}: {TYPE}-{MESSAGE}')
+```
+
+To add additional platform vars. You need to activate them:
+```
+logger.setConfig('PLATFORM_DATA', True)
+```
+
+This will allow usage of:
+
+ * `PL_TYPE`: The machine type, e.g. `i386`
+ * `PL_NAME`: The computer’s network name.
+ * `PL_PROCESSOR`: The (real) processor name, e.g. `amdk6`.
+ * `PL_PY_BUILD_DATE`: The Python build number.
+ * `PL_PY_COMPILER`: A string identifying the compiler used for compiling Python.
+ * `PL_PY_RELEASE`: The system’s release, e.g. `2.2.0`.
+ * `PL_OS`: The system/OS name, e.g. `Linux`, `Windows`
+ * `PL_TIMEZONE`: The system timezone.
+
+For example we can customize message format into:
+```
+logger.setConfig('PLATFORM_DATA', True)
+logger.setConfig('LOG_MESSAGE_FORMAT', '{DATE}-{PL_OS}: {TYPE} - {MESSAGE}')
+```
+and so on.
 
 
 Misc

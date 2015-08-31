@@ -22,10 +22,10 @@ class PyLogging(dict):
     LOG_FILE_PATH = ''
     
     # Message Format. A list of available vars: 
-    #   TYPE:
-    #   DATE:
-    #   DATETIME:
-    #   MESSAGE:
+    #   TYPE: Message type
+    #   DATE: Log time Date
+    #   DATETIME: Log time datetime
+    #   MESSAGE: Message content
     LOG_MESSAGE_FORMAT = '{TYPE}: <{DATETIME}>  {MESSAGE}'
     
     # Dates Format
@@ -36,14 +36,14 @@ class PyLogging(dict):
 
     # Platform Data Vars
     #  If set to true, It will Add the following:
-    #   PL_TYPE:
-    #   PL_NAME:
-    #   PL_PROCESSOR:
-    #   PL_PY_BUILD_DATE:
-    #   PL_PY_COMPILER:
-    #   PL_PY_RELEASE:
-    #   PL_OS:
-    #   PL_TIMEZONE:
+    #   PL_TYPE: The machine type, e.g. `i386`
+    #   PL_NAME: The computer’s network name.
+    #   PL_PROCESSOR: The (real) processor name, e.g. `amdk6`.
+    #   PL_PY_BUILD_DATE: The Python build number.
+    #   PL_PY_COMPILER: A string identifying the compiler used for compiling Python.
+    #   PL_PY_RELEASE: The system’s release, e.g. `2.2.0`.
+    #   PL_OS: The system/OS name, e.g. `Linux`, `Windows`
+    #   PL_TIMEZONE: The system timezone.
     PLATFORM_DATA = False
 
     # Whether to Send Alert Email
