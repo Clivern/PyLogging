@@ -37,7 +37,7 @@ class PyLogging(dict):
     # Platform Data Vars
     #  If set to true, It will Add the following:
     #   PL_TYPE: The machine type, e.g. i386
-    #   PL_NAME: The computer’s network name.
+    #   PL_NAME: The computer network name.
     #   PL_PROCESSOR: The (real) processor name, e.g. amdk6.
     #   PL_PY_BUILD_DATE: The Python build number.
     #   PL_PY_COMPILER: A string identifying the compiler used for compiling Python.
