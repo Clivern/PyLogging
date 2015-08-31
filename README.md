@@ -13,9 +13,9 @@ To install PyLogging run this command:
 ```
 pip install pylogging
 ```
-or [download](https://github.com/Clivern/PyLogging/archive/master.zip) Package then run this command:
+or [download](https://github.com/Clivern/pylogging/archive/1.0.0.zip) Package then run this command:
 ```
-pip install PyLogging-master.zip
+pip install PyLogging-1.0.0.zip
 ```
 
 Usage

@@ -26,7 +26,7 @@ class PyLogging(dict):
     #   DATE:
     #   DATETIME:
     #   MESSAGE:
-    LOG_MESSAGE_FORMAT = '{TYPE}: <{DATE}>  {MESSAGE}'
+    LOG_MESSAGE_FORMAT = '{TYPE}: <{DATETIME}>  {MESSAGE}'
     
     # Dates Format
     DATES_FORMAT = '%Y-%m-%d'
