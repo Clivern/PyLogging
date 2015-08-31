@@ -53,13 +53,16 @@ class PyLogging(dict):
     ALERT_SUBJECT = "My APP Alert"
 
     # Alert Email
-    ALERT_EMAIL = 'hello@example.com'
+    ALERT_EMAIL = 'you@gmail.com'
     
     # Message Types to Send to Email
     ALERT_TYPES = ['critical', 'error']
 
     # Mailer Class Host
-    MAILER_HOST = 'localhost'
+    MAILER_HOST = 'smtp.gmail.com'
+
+    # Mailer Class Port
+    MAILER_PORT = 587
     
     # Mailer Class User
     MAILER_USER = None
@@ -68,7 +71,7 @@ class PyLogging(dict):
     MAILER_PWD = None
 
     # From Email Value
-    MAILER_FROM = 'no_reply@example.com'
+    MAILER_FROM = 'you@gmail.com'
 
     # Custom Message Filters
     FILTERS = []
@@ -195,13 +198,13 @@ class PyLogging(dict):
 
     def _configMailer(self):
         """ Config Mailer Class """
-        self._MAILER = Mailer(self.MAILER_HOST)
+        self._MAILER = Mailer(self.MAILER_HOST, self.MAILER_PORT)
         self._MAILER.login(self.MAILER_USER, self.MAILER_PWD)
 
     def _sendMsg(self, type, msg):
         """ Send Alert Message To Emails """
         if self.ALERT_STATUS and type in self.ALERT_TYPES:
-            self._MAILER.send(self, self.MAILER_FROM, self.ALERT_EMAIL, self.ALERT_SUBJECT, msg)
+            self._MAILER.send(self.MAILER_FROM, self.ALERT_EMAIL, self.ALERT_SUBJECT, msg)
 
     def _execFilters(self, type, msg):
         """ Execute Registered Filters """

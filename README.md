@@ -57,12 +57,13 @@ A list of a vailable configs are:
  * `PLATFORM_DATA`: Whether to activate platform data (default:`False`).
  * `ALERT_STATUS`: Email notification status (default:`False`).
  * `ALERT_SUBJECT`: Email notification subject (default:`My APP Alert`).
- * `ALERT_EMAIL`: Receiver Email or emails (format:`hello@example.com` or `hello1@example.com,hello2@example.com,..`).
+ * `ALERT_EMAIL`: Receiver Email or emails (format:`you@gmail.com` or `you@gmail.com,other@gmail.com,..`).
  * `ALERT_TYPES`: Message types which will delivered to email (default:`['critical', 'error']`).
- * `MAILER_HOST`: SMTP server (default:`localhost`).
+ * `MAILER_HOST`: SMTP server (default:`smtp.gmail.com`).
+ * `MAILER_PORT`: SMTP server port (default:`587`).
  * `MAILER_USER`: SMTP server user (default:`None`).
  * `MAILER_PWD`: SMTP server password (default:`None`).
- * `MAILER_FROM`: Sender email (default:`no_reply@example.com`).
+ * `MAILER_FROM`: Sender email (default:`you@gmail.com`).
 
 To set configs in initialization:
 ```
@@ -138,22 +139,24 @@ Then set your own configurations like so
 ```
 # Set default message subject
 logger.setConfig('ALERT_SUBJECT', "My APP Alert")
-# Add your email
-logger.setConfig('ALERT_EMAIL', 'hello@example.com')
-# OR you can use this in case of multi emails
-logger.setConfig('ALERT_EMAIL', 'hello@example.com,hello2@example.com,hello3@example.com')
+# Email to send message to
+logger.setConfig('ALERT_EMAIL', 'you@gmail.com')
+# OR send message to many emails
+logger.setConfig('ALERT_EMAIL', 'you@gmail.com,alex@gmail.com,mary@gmail.com')
 # Message types to receive alerts for
 logger.setConfig('ALERT_TYPES', ['critical', 'error'])
 
-# our own SMTP server
-logger.setConfig('MAILER_HOST', 'localhost')
-# SMTP server username
-logger.setConfig('MAILER_USER', None)
-# SMTP server password
-logger.setConfig('MAILER_PWD', None)
+# our own SMTP server (Library uses gmail)
+logger.setConfig('MAILER_HOST', 'smtp.gmail.com')
+# SMTP server port
+logger.setConfig('MAILER_PORT', 587)
+# SMTP server username (your gmail email)
+logger.setConfig('MAILER_USER', 'you@gmail.com')
+# SMTP server password (your gmail password)
+logger.setConfig('MAILER_PWD', 'gmailpass')
 
-# Message from header value
-logger.setConfig('MAILER_FROM', 'no_reply@example.com')
+# Message from
+logger.setConfig('MAILER_FROM', 'you@gmail.com')
 ```
 
 When you log messages, Messages of critical and error types will be delivered to emails:
@@ -167,6 +170,27 @@ logger.warning("Warning Message.")
 # Log Error Message (with email notification)
 logger.error("Error Message.")
 # Log Critical Message (with email notification)
+logger.critical("Critical Message.")
+```
+
+So if you like to send alert to `you@gmail.com` and your email password is `dummypass` the library configs will be:
+```
+logs_path = os.path.dirname(os.path.abspath(__file__)) + '/logs/'
+logger = pylogging.PyLogging(LOG_FILE_PATH = logs_path)
+logger.setConfig('ALERT_STATUS', True)
+logger.setConfig('ALERT_SUBJECT', "My APP Alert")
+logger.setConfig('ALERT_EMAIL', 'you@gmail.com')
+logger.setConfig('ALERT_TYPES', ['critical', 'error'])
+logger.setConfig('MAILER_HOST', 'smtp.gmail.com')
+logger.setConfig('MAILER_PORT', 587)
+logger.setConfig('MAILER_USER', 'you@gmail.com')
+logger.setConfig('MAILER_PWD', 'dummypass')
+logger.setConfig('MAILER_FROM', 'you@gmail.com')
+
+logger.info("Info Message")
+logger.log("Normal Log Message.")
+logger.warning("Warning Message.")
+logger.error("Error Message.")
 logger.critical("Critical Message.")
 ```
 

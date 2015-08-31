@@ -10,9 +10,10 @@ from email.mime.text import MIMEText
 class Mailer():
     """ Send Log Messages To Email """
 
-    def __init__(self, host="localhost"):
+    def __init__(self, host='smtp.gmail.com', port=587):
         """ Define Host """
         self.host = host
+        self.port = port
         self._usr = None
         self._pwd = None
 
@@ -27,8 +28,8 @@ class Mailer():
         msg['Subject'] = subject
         msg['From'] = me
         msg['To'] = to
-        server = smtplib.SMTP(self.host)
-        
+        server = smtplib.SMTP(self.host, self.port)
+        server.starttls()
         # Check if user and password defined
         if self._usr and self._pwd:
             server.login(self._usr, self._pwd)
