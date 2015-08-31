@@ -1,7 +1,7 @@
 """
 Python Logging Library
 
-@author: Clivern U{support@clivern.com}
+@author: Clivern U{hello@clivern.com}
 """
 
 from setuptools import setup
@@ -16,7 +16,7 @@ setup(
     name = "pylogging",
     version = __VERSION__,
     author = "Clivern",
-    author_email = "support@clivern.com",
+    author_email = "hello@clivern.com",
     description="Python Logging Library",
     license = "MIT",
     keywords = "logging,pylogger",
@@ -24,24 +24,13 @@ setup(
     packages = ['pylogging'],
     long_description = read('README.md'),
     classifiers = [
-        # Common values are
-        #   3 - Alpha
-        #   4 - Beta
-        #   5 - Production/Stable
-        'Development Status :: 3 - Alpha',
-
-        # Package is intended for
-        "Topic :: Utilities",
-
+        'Development Status :: 5 - Production/Stable',
+        'Topic :: Utilities',
         'License :: OSI Approved :: MIT License',
-
         # Support Python-2.x and Python-3.x
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.4'
     ],
 )

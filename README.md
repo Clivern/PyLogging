@@ -1,7 +1,7 @@
 PyLogging
 =========
 
-PyLogging is a light-weight python logging library. It provides ability to write logs in your own customized format. It also provide support for custom logs filters, custom actions and email notifications.
+PyLogging is a light-weight python logging library. It provides ability to write logs in your own customized format. It is also provides support for custom log filters, custom log actions and email notifications.
 
 *Current version: [v1.0.0]*
 

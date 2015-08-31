@@ -1,7 +1,7 @@
 """
 Python Logging Library
 
-@author: Clivern U{support@clivern.com}
+@author: Clivern U{hello@clivern.com}
 """
 from __future__ import print_function
 from time import gmtime, strftime
