@@ -48,6 +48,7 @@ logger.log("Normal Log Message.")
 ### Custom Configs
 
 A list of a vailable configs are:
+
  * `LOG_FILE_FORMAT`:
  * `LOG_FILE_PATH`:
  * `LOG_MESSAGE_FORMAT`:
