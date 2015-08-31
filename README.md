@@ -49,20 +49,20 @@ logger.log("Normal Log Message.")
 
 A list of a vailable configs are:
 
- * `LOG_FILE_FORMAT`:
- * `LOG_FILE_PATH`:
- * `LOG_MESSAGE_FORMAT`:
- * `DATES_FORMAT`:
- * `DATETIME_FORMAT`:
- * `PLATFORM_DATA`:
- * `ALERT_STATUS`:
- * `ALERT_SUBJECT`:
- * `ALERT_EMAIL`:
- * `ALERT_TYPES`:
- * `MAILER_HOST`:
- * `MAILER_USER`:
- * `MAILER_PWD`:
- * `MAILER_FROM`: 
+ * `LOG_FILE_FORMAT`: Log file format (default:`%Y-%m-%d`).
+ * `LOG_FILE_PATH`: Logs dir absolute path and it is required (default:` `).
+ * `LOG_MESSAGE_FORMAT`: Log message format (default:`{TYPE}: <{DATETIME}>  {MESSAGE}`).
+ * `DATES_FORMAT`: Dates format (default:`%Y-%m-%d`).
+ * `DATETIME_FORMAT`: Datetimes format (default:`%Y-%m-%d %H:%M`).
+ * `PLATFORM_DATA`: Whether to activate platform data (default:`False`).
+ * `ALERT_STATUS`: Email notification status (default:`False`).
+ * `ALERT_SUBJECT`: Email notification subject (default:`My APP Alert`).
+ * `ALERT_EMAIL`: Receiver Email or emails (format:`hello@example.com` or `hello1@example.com,hello2@example.com,..`).
+ * `ALERT_TYPES`: Message types which will delivered to email (default:`['critical', 'error']`).
+ * `MAILER_HOST`: SMTP server (default:`localhost`).
+ * `MAILER_USER`: SMTP server user (default:`None`).
+ * `MAILER_PWD`: SMTP server password (default:`None`).
+ * `MAILER_FROM`: Sender email (default:`no_reply@example.com`).
 
 To set configs in initialization:
 ```
@@ -134,7 +134,7 @@ logger = pylogging.PyLogging(LOG_FILE_PATH = logs_path)
 logger.setConfig('ALERT_STATUS', True)
 ```
 
-then set your own configurations like so
+Then set your own configurations like so
 ```
 # Set default message subject
 logger.setConfig('ALERT_SUBJECT', "My APP Alert")
@@ -156,17 +156,27 @@ logger.setConfig('MAILER_PWD', None)
 logger.setConfig('MAILER_FROM', 'no_reply@example.com')
 ```
 
-<!--
+When you log messages, Messages of critical and error types will be delivered to emails:
+```
+# Log Info Message
+logger.info("Info Message")
+# Log Normal Message
+logger.log("Normal Log Message.")
+# Log Warning Message
+logger.warning("Warning Message.")
+# Log Error Message (with email notification)
+logger.error("Error Message.")
+# Log Critical Message (with email notification)
+logger.critical("Critical Message.")
+```
+
 Customizing
 ===========
-
-Basic
------
 
 Full
 ----
 
--->
+
 Misc
 ====
 

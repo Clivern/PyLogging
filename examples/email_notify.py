@@ -25,3 +25,15 @@ logger.setConfig('MAILER_PWD', None)
 
 # Message from header value
 logger.setConfig('MAILER_FROM', 'no_reply@example.com')
+
+
+# Log Info Message
+logger.info("Info Message")
+# Log Normal Message
+logger.log("Normal Log Message.")
+# Log Warning Message
+logger.warning("Warning Message.")
+# Log Error Message (with email notification)
+logger.error("Error Message.")
+# Log Critical Message (with email notification)
+logger.critical("Critical Message.")
