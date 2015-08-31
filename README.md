@@ -48,20 +48,20 @@ logger.log("Normal Log Message.")
 ### Custom Configs
 
 A list of a vailable configs are:
-- `LOG_FILE_FORMAT`:
-- `LOG_FILE_PATH`:
-- `LOG_MESSAGE_FORMAT`:
-- `DATES_FORMAT`:
-- `DATETIME_FORMAT`:
-- `PLATFORM_DATA`:
-- `ALERT_STATUS`:
-- `ALERT_SUBJECT`:
-- `ALERT_EMAIL`:
-- `ALERT_TYPES`:
-- `MAILER_HOST`:
-- `MAILER_USER`:
-- `MAILER_PWD`:
-- `MAILER_FROM`: 
+ * `LOG_FILE_FORMAT`:
+ * `LOG_FILE_PATH`:
+ * `LOG_MESSAGE_FORMAT`:
+ * `DATES_FORMAT`:
+ * `DATETIME_FORMAT`:
+ * `PLATFORM_DATA`:
+ * `ALERT_STATUS`:
+ * `ALERT_SUBJECT`:
+ * `ALERT_EMAIL`:
+ * `ALERT_TYPES`:
+ * `MAILER_HOST`:
+ * `MAILER_USER`:
+ * `MAILER_PWD`:
+ * `MAILER_FROM`: 
 
 To set configs in initialization:
 ```
