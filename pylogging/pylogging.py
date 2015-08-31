@@ -82,7 +82,6 @@ class PyLogging(dict):
     def __init__(self, **kargs):
         """ Init PyLogger Class and Mailer Class """
         self._config(**kargs)
-        self._configMailer()
 
     def _config(self, **kargs):
         """ ReConfigure Package """
@@ -204,6 +203,7 @@ class PyLogging(dict):
     def _sendMsg(self, type, msg):
         """ Send Alert Message To Emails """
         if self.ALERT_STATUS and type in self.ALERT_TYPES:
+            self._configMailer()
             self._MAILER.send(self.MAILER_FROM, self.ALERT_EMAIL, self.ALERT_SUBJECT, msg)
 
     def _execFilters(self, type, msg):
