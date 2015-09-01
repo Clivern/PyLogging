@@ -20,7 +20,7 @@ setup(
     description="Python Logging Library",
     license = "MIT",
     keywords = "logging,pylogger",
-    url = "http://clivern.com/portfolio/pylogging",
+    url = "http://clivern.github.io/PyLogging/",
     packages = ['pylogging'],
     long_description = read('README.md'),
     classifiers = [
