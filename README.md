@@ -266,7 +266,3 @@ Acknowledgements
 © 2015, Clivern. Released under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
 
 **PyLogging** is authored and maintained by [@clivern](http://github.com/clivern).
-
- * [My website](http://clivern.com) (clivern.com)
- * [Github](http://github.com/clivern) (@clivern)
- * [Twitter](http://twitter.com/clivernco) (@clivernco)
