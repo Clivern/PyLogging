@@ -6,6 +6,7 @@ PyLogging is a light-weight python logging library. It provides ability to write
 *Current version: [v1.0.2]*
 
 [![Build Status](https://travis-ci.org/Clivern/PyLogging.svg?branch=master)](https://travis-ci.org/Clivern/PyLogging)
+[![PyPI version](https://badge.fury.io/py/PyLogging.svg)](https://badge.fury.io/py/PyLogging)
 
 Installation
 ------------
